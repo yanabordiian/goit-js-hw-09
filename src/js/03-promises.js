@@ -15,13 +15,12 @@ function createPromise(position, delay) {
 
 document.querySelector('form').addEventListener('submit', async function (e) {
   e.preventDefault();
-  const delay = parseInt(this.elements.delay.value);
-  const step = parseInt(this.elements.step.value);
+  let delay = parseInt(this.elements.delay.value);
+  let step = parseInt(this.elements.step.value);
   const amount = parseInt(this.elements.amount.value);
 
-  for (let i = 0; i < amount; i++) {
+  for (let i = 0; i < amount; i+= 1) {
     const position = i + 1;
-    const currentDelay = delay + i * step;
     
     try {
       const result = await createPromise(position, currentDelay);
@@ -29,5 +28,6 @@ document.querySelector('form').addEventListener('submit', async function (e) {
     } catch (error) {
       Notiflix.Notify.failure(`❌ Rejected promise ${error.position} in ${error.delay}ms`);
     }
+    delay += step;
   }
 });
