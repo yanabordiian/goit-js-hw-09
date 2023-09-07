@@ -14,7 +14,7 @@ let position = 0;
 refs.form.addEventListener('submit', onHandleForm);
 
 function onHandleForm(e) {
-  e.preventDefault();
+  e.preventDefault(); 
   
   for (let i = 1; i <= amount; i += 1) {
     position = i;
